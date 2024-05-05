@@ -15,6 +15,7 @@
     in {
       devShell = pkgs.mkShell {
         packages = with pkgs; [
+          bashInteractive
           jdk8
           jdk17
           jdk21
@@ -32,6 +33,7 @@
         ];
 
         shellHook = ''
+          PS1='\n\[\033[1;32m\][\u@\h \W]\[\033[0m\]\$ '
           exec codium .
         '';
       };
