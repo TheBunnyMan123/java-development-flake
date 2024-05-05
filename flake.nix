@@ -29,7 +29,7 @@
         ];
 
         shellHook = ''
-          exec code .
+          exec codium .
         '';
       };
     }
