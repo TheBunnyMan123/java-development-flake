@@ -13,28 +13,90 @@
         system = "${system}";
       };
     in {
-      devShell = pkgs.mkShell {
-        packages = with pkgs; [
-          bashInteractive
-          jdk8
-          jdk17
-          jdk21
-          (vscode-with-extensions.override {
-            vscode = vscodium;
-            vscodeExtensions = with vscode-extensions; [
-              redhat.java
-              vscjava.vscode-maven
-              vscjava.vscode-java-test
-              vscjava.vscode-java-dependency
-              vscjava.vscode-java-debug
-              vscjava.vscode-gradle
-            ];
-          })
-        ];
+      devShells = {
+        ide8 = pkgs.mkShell {
+          packages = with pkgs; [
+            bashInteractive
+            jdk8
+            (vscode-with-extensions.override {
+              vscode = vscodium;
+              vscodeExtensions = with vscode-extensions; [
+                redhat.java
+                vscjava.vscode-maven
+                vscjava.vscode-java-test
+                vscjava.vscode-java-dependency
+                vscjava.vscode-java-debug
+                vscjava.vscode-gradle
+              ];
+            })
+          ];
 
-        shellHook = ''
-          exec codium .
-        '';
+          shellHook = ''
+            exec codium .
+          '';
+        };
+
+        ide17 = pkgs.mkShell {
+          packages = with pkgs; [
+            bashInteractive
+            jdk17
+            (vscode-with-extensions.override {
+              vscode = vscodium;
+              vscodeExtensions = with vscode-extensions; [
+                redhat.java
+                vscjava.vscode-maven
+                vscjava.vscode-java-test
+                vscjava.vscode-java-dependency
+                vscjava.vscode-java-debug
+                vscjava.vscode-gradle
+              ];
+            })
+          ];
+
+          shellHook = ''
+            exec codium .
+          '';
+        };
+
+        ide21 = pkgs.mkShell {
+          packages = with pkgs; [
+            bashInteractive
+            jdk21
+            (vscode-with-extensions.override {
+              vscode = vscodium;
+              vscodeExtensions = with vscode-extensions; [
+                redhat.java
+                vscjava.vscode-maven
+                vscjava.vscode-java-test
+                vscjava.vscode-java-dependency
+                vscjava.vscode-java-debug
+                vscjava.vscode-gradle
+              ];
+            })
+          ];
+
+          shellHook = ''
+            exec codium .
+          '';
+        };
+
+        noIde8 = pkgs.mkShell {
+          packages = with pkgs; [
+            jdk8
+          ];
+        };
+
+        noIde17 = pkgs.mkShell {
+          packages = with pkgs; [
+            jdk17
+          ];
+        };
+
+        noIde21 = pkgs.mkShell {
+          packages = with pkgs; [
+            jdk21
+          ];
+        };
       };
     }
   );
