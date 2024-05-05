@@ -13,7 +13,7 @@
         system = "${system}";
       };
     in {
-      devShell = {
+      devShell = pkgs.mkShell {
         shellHook = ''
           echo "Please specify which mode you want (check readme)"
           exit
