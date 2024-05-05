@@ -1,5 +1,5 @@
 {
-  description = "A dev environment for Figura";
+  description = "A dev environment for java";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -39,7 +39,7 @@
           ];
 
           shellHook = ''
-            exec codium .
+            exec codium --verbose .
           '';
         };
 
