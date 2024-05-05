@@ -18,6 +18,7 @@
           jdk8
           jdk17
           jdk21
+          jdk
           (vscode-with-extensions.override {
             vscode = vscodium;
             vscodeExtensions = with vscode-extensions; [
