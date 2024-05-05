@@ -15,6 +15,9 @@
     in {
       devShell = pkgs.mkShell {
         packages = with pkgs; [
+          jdk8
+          jdk17
+          jdk21
           (vscode-with-extensions.override {
             vscode = vscodium;
             vscodeExtensions = with vscode-extensions; [
