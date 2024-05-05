@@ -18,7 +18,7 @@
           echo "Please specify which mode you want (check readme)"
           exit
         '';
-      }
+      };
 
       devShells = {
         ide8 = pkgs.mkShell {
