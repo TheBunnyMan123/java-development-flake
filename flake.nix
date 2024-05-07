@@ -13,20 +13,21 @@
         system = "${system}";
       };
     in {
-      packagegs.code = (vscode-with-extensions.override {
-              vscode = vscodium;
-              vscodeExtensions = with nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
-              pkgs.vscode-extensions.ms-dotnettools.csdevkit
-                mhutchie.git-graph
-                aaron-bond.better-comments
-                pkgs.vscode-extensions.redhat.java
-                pkgs.vscode-extensions.vscjava.vscode-maven
-                pkgs.vscode-extensions.vscjava.vscode-java-test
-                pkgs.vscode-extensions.vscjava.vscode-java-dependency
-                pkgs.vscode-extensions.vscjava.vscode-java-debug
-                pkgs.vscode-extensions.vscjava.vscode-gradle
-              ];
-            })
+      packages.code = (vscode-with-extensions.override {
+        vscode = vscodium;
+        vscodeExtensions = with nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
+        pkgs.vscode-extensions.ms-dotnettools.csdevkit
+          mhutchie.git-graph
+          aaron-bond.better-comments
+          pkgs.vscode-extensions.redhat.java
+          pkgs.vscode-extensions.vscjava.vscode-maven
+          pkgs.vscode-extensions.vscjava.vscode-java-test
+          pkgs.vscode-extensions.vscjava.vscode-java-dependency
+          pkgs.vscode-extensions.vscjava.vscode-java-debug
+          pkgs.vscode-extensions.vscjava.vscode-gradle
+        ];
+      });
+      
       devShell = pkgs.mkShell {
         shellHook = ''
           echo "Please specify which mode you want (check readme)"
@@ -51,17 +52,7 @@
           packages = with pkgs; [
             bashInteractive
             jdk17
-            (vscode-with-extensions.override {
-              vscode = vscodium;
-              vscodeExtensions = with vscode-extensions; [
-                redhat.java
-                vscjava.vscode-maven
-                vscjava.vscode-java-test
-                vscjava.vscode-java-dependency
-                vscjava.vscode-java-debug
-                vscjava.vscode-gradle
-              ];
-            })
+            packages.code
           ];
 
           shellHook = ''
@@ -73,17 +64,7 @@
           packages = with pkgs; [
             bashInteractive
             jdk21
-            (vscode-with-extensions.override {
-              vscode = vscodium;
-              vscodeExtensions = with vscode-extensions; [
-                redhat.java
-                vscjava.vscode-maven
-                vscjava.vscode-java-test
-                vscjava.vscode-java-dependency
-                vscjava.vscode-java-debug
-                vscjava.vscode-gradle
-              ];
-            })
+            packages.code
           ];
 
           shellHook = ''
